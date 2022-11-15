@@ -19,6 +19,8 @@ gem 'erb2haml'
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'sgcop', github: 'SonicGarden/sgcop'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do
