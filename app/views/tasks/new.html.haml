@@ -1,0 +1,7 @@
+%h1 タスク新規作成
+= form_with(model: @task) do |f|
+  = f.label :name
+  = f.text_field :name
+  = f.label :contents
+  = f.text_field :contents
+  = f.submit
