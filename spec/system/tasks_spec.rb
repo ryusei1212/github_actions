@@ -6,7 +6,9 @@ RSpec.describe 'タスクのCRUD処理', type: :system do
   end
 
   describe 'タスクの一覧画面' do
-    let!(:task) { FactoryBot.create(:task, name: '勉強をする', contents: '数学と英語') }
+    before do
+      FactoryBot.create(:task, name: '勉強をする', contents: '数学と英語')
+    end
 
     it 'タスクと内容が表示される' do
       visit tasks_path
@@ -14,5 +16,4 @@ RSpec.describe 'タスクのCRUD処理', type: :system do
       expect(page).to have_content '数学と英語'
     end
   end
-
 end
