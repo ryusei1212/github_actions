@@ -1,9 +1,9 @@
 name: "Ruby on Rails CI"
-on: push
-
+on: [push, pullrequest]
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     services:
       postgres:
         image: postgres:11-alpine
@@ -33,17 +33,16 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@0a29871fe2b0200a17a4497bae54fe5df0d973aa
         with:
           bundler-cache: true
 
-      - name: Security audit dependencies
-        run: bin/bundler-audit --update
-      - name: Security audit application code
-        run: bin/brakeman -q -w2
       - name: Lint Ruby files
         run: bundle exec rubocop
